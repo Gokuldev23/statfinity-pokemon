@@ -4,14 +4,14 @@ import { getPokemons } from "@/js/api";
 import PokemonList from "@/components/PokemonList";
 
 export default async function Home() {
-  let limit = 100;
-  let offset = 0;
+  const fetchLimit = 100;
+  const offset = 0;
 
-  let result = await getPokemons(limit, offset);
-  let pokemons = result?.results.map((vl,i)=>{
-    return {...vl,id:i+1}
-  }) || [];
-
+  const result = await getPokemons(fetchLimit, offset);
+  const pokemons =
+    result?.results.map((vl, i) => {
+      return { ...vl, id: i + 1 };
+    }) || [];
 
   return (
     <div className="min-h-screen  py-8 px-4 bg-blue-500 rounded-2xl">
@@ -24,8 +24,8 @@ export default async function Home() {
             Discover your favorite Pokémon
           </p>
         </div>
-         
-        <PokemonList list={pokemons}/>
+
+        <PokemonList list={pokemons} />
       </div>
     </div>
   );

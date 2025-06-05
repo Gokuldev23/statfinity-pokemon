@@ -1,40 +1,37 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import PokeCard from './PokeCard';
-import SearchBar from './SearchBar';
+"use client";
+import React, { useEffect, useState } from "react";
+import PokeCard from "./PokeCard";
+import SearchBar from "./SearchBar";
 
-export default function PokemonList({list}) {
-
-  const LIMIT = 20
-  const [currPage,setCurrPage] = useState(1)
-  const [searchVal,setSearchVal] = useState("")
+export default function PokemonList({ list }) {
+  const LIMIT = 20;
+  const [currPage, setCurrPage] = useState(1);
+  const [searchVal, setSearchVal] = useState("");
   const [filteredPokemons, setFilteredPokemons] = useState(list);
 
-  const totalPages = list?.length / LIMIT
+  const totalPages = list?.length / LIMIT;
   const startIndex = (currPage - 1) * LIMIT;
   const endIndex = startIndex + LIMIT;
   const currentPokemons = filteredPokemons.slice(startIndex, endIndex);
 
   const handleFilter = (e) => {
-      setSearchVal(e.target.value);
-  }
+    setSearchVal(e.target.value);
+  };
 
   useEffect(() => {
     const filtered = list.filter((pokemon) =>
       pokemon.name.toLowerCase().startsWith(searchVal.toLowerCase())
-    )
+    );
     setFilteredPokemons(filtered);
   }, [searchVal, list]);
 
-
   const goNext = () => {
-      setCurrPage((prev)=>prev+=1)
-  }
+    setCurrPage((prev) => (prev += 1));
+  };
 
   const goBack = () => {
     setCurrPage((prev) => (prev -= 1));
   };
- 
 
   return (
     <>
@@ -48,7 +45,7 @@ export default function PokemonList({list}) {
           Back
         </button>
         <p>
-        {currPage} / {totalPages}
+          {currPage} / {totalPages}
         </p>
         <button
           disabled={currPage == totalPages}
@@ -63,6 +60,14 @@ export default function PokemonList({list}) {
           return <PokeCard key={pokemon.id} pokemon={pokemon} />;
         })}
       </ul>
+      {currentPokemons.length == 0 && (
+        <p
+          className={`text-center my-20 text-2xl text-black/80 font-medium italic`}
+        >
+          No Result has been found for search word
+          <span className="font-bold text-3xl"> {searchVal}</span>!!
+        </p>
+      )}
     </>
   );
 }

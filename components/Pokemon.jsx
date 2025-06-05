@@ -21,7 +21,11 @@ export default function Pokemon({ id }) {
   });
 
   if (isLoading) {
-    return <div className="w-full max-w-4xl mx-auto rounded-3xl h-dvh bg-gray-600 animate-pulse"></div>;
+    return (
+      <div className="p-4">
+        <div className="w-full max-w-4xl mx-auto rounded-3xl h-dvh bg-gray-500 animate-pulse"></div>
+      </div>
+    );
   }
 
   if (isError) {
@@ -34,7 +38,6 @@ export default function Pokemon({ id }) {
       </div>
     );
   }
-  console.log({pokemon})
   return (
     <>
       <div className="min-h-screen  flex items-center justify-center p-4">
@@ -45,10 +48,15 @@ export default function Pokemon({ id }) {
             img={pokemon.sprites.other.dream_world.front_default}
             blurImg={pokemon.sprites.front_default}
           />
-          <div className="pt-20 px-6 pb-6">
-            <PokeFeatures type={pokemon.types[0].type} height={pokemon.height} weight={pokemon.weight} base_experience={pokemon.base_experience}/>
+          <div className="pt-10 px-6 pb-6">
+            <PokeFeatures
+              type={pokemon.types[0].type}
+              height={pokemon.height}
+              weight={pokemon.weight}
+              base_experience={pokemon.base_experience}
+            />
             <PokeAbilities abilities={pokemon.abilities} />
-            <PokStats stats={pokemon.stats}/>
+            <PokStats stats={pokemon.stats} />
           </div>
         </div>
       </div>
