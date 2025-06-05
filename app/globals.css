@@ -24,3 +24,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .background-placeholder {
+    background-image:  linear-gradient(90deg,rgba(1, 22, 39, 0.486),rgba(0, 0, 0, 0.671),rgba(43, 43, 1, 0.90)) ,url("/pokemon-placeholder.png");
+    background-position: 50% 50%;
+    /* background-repeat: no-repeat; */
+    background-size: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+  .background-placeholder:hover{
+    background-position: 50% 50%;
+    background-size: 110%;
+  }
+}
