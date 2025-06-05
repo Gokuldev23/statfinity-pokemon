@@ -22,7 +22,7 @@ export default async function Home() {
       <ul className="grid grid-cols-4 gap-5 my-8">
         {pokemons.map((pokemon, i) => {
           return (
-            <li className="">
+            <li key={`${pokemon.name}${i + 1}`} className="">
               <Link
                 href={`/pokemon/${i + 1}`}
                 className="capitalize  text-2xl font-extrabold tracking-widest block text-shadow-2xs text-center p-10 background-placeholder rounded-2xl h-full"

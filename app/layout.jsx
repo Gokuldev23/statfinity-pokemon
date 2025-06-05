@@ -27,9 +27,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased bg-yellow-500`}
       >
-        <main className="max-w-6xl mx-auto py-10 font-poppins">{children}</main>
+        <main className="max-w-6xl mx-auto py-10 font-poppins ">
+          {children}
+        </main>
       </body>
     </html>
   );
