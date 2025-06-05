@@ -1,7 +1,9 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+
 import { getAPockemon } from "@/js/api";
+
 import PokeHeader from "./PokeHeader";
 import PokeAbilities from "./PokeAbilities";
 import PokStats from "./PokStats";
@@ -22,11 +24,13 @@ export default function Pokemon({ id }) {
     return <div className="w-full max-w-4xl mx-auto rounded-3xl h-dvh bg-gray-600 animate-pulse"></div>;
   }
 
-  if (isLoading) {
+  if (isError) {
     return (
-      <div className="w-full h-dvh">
-        <h1>Oops! Something Went wrong </h1>
-        <Link href={"/"}>Go back</Link>
+      <div className="w-full h-dvh flex items-center justify-center">
+        <div>
+          <h1>Oops! Something Went wrong </h1>
+          <Link href={"/"}>Go back</Link>
+        </div>
       </div>
     );
   }

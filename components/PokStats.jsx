@@ -9,14 +9,13 @@ export default function PokStats({stats}) {
           <div key={index}>
             <div className="flex justify-between text-sm mb-1">
               <span className="capitalize text-gray-600">{stat.stat.name}</span>
-              <span className="font-bold">{stat.base_stat}</span>
+              <span className={`font-bold ${stat.base_stat<50?"text-gray-500":"text-blue-500"}`}>{stat.base_stat}</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div
+              {/* <div
                 className="bg-blue-500 h-2 rounded-full"
                 style={{ width: `${Math.min(100, stat.base_stat)}%` }}
-              ></div>
-            </div>
+              ></div> */}
+              <input min={0} max={100} value={stat.base_stat} className='w-full' type="range" name="range-meter" id="" />
           </div>
         ))}
       </div>

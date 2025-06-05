@@ -7,7 +7,7 @@ export default function PokeCard({pokemon}) {
   const pokemonId = pokemon.id;
   return (
     <li
-      className="group relative rounded-xl overflow-hidden shadow-2xl hover:shadow-yellow-400/30 transition-all duration-300 hover:-translate-y-2 hover:scale-105"
+      className="group relative rounded-xl overflow-hidden shadow-2xl0 transition-all duration-300 hover:-translate-y-2 hover:scale-105"
     >
       <div
         className="absolute inset-0 bg-center bg-cover opacity-70 group-hover:opacity-90 transition-opacity duration-300"

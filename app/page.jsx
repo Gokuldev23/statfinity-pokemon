@@ -1,11 +1,10 @@
 import React from "react";
 
 import { getPokemons } from "@/js/api";
-import PokeCard from "@/components/PokeCard";
 import PokemonList from "@/components/PokemonList";
 
-export default async function Home({searchParams}) {
-  let limit = 20;
+export default async function Home() {
+  let limit = 100;
   let offset = 0;
 
   let result = await getPokemons(limit, offset);

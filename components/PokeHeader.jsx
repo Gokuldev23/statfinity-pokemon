@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function PokeHeader({ id, name, img ,blurImg}) {
+export default function PokeHeader({ id, name, img }) {
 
   let [isLoaded,setIsLoaded] = useState(false)
 
@@ -17,9 +17,8 @@ export default function PokeHeader({ id, name, img ,blurImg}) {
             height={200}
             src={img}
             alt={name}
-            blurDataURL="/pokemon-placeholder.png"
             onLoadingComplete={() => setIsLoaded(true)}
-            className={`w-64 h-64 object-contain transform hover:scale-110 transition-all duration-300 ${isLoaded?"opacity-100":"opacity-0"}`}
+            className={`object-contain hover:scale-110 transition-all duration-300 ${isLoaded?"opacity-100":"opacity-0"}`}
           />
         </div>
       </div>
