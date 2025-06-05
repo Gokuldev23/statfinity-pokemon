@@ -1,38 +1,33 @@
 import React from "react";
-import Link from "next/link";
 
-async function getPokemons() {
-  let limit = 10;
+import { getPokemons } from "@/js/api";
+import PokeCard from "@/components/PokeCard";
+import PokemonList from "@/components/PokemonList";
+
+export default async function Home({searchParams}) {
+  let limit = 20;
   let offset = 0;
-  const res = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
-    {
-      next: { revalidate: 0 }, // means static and no revalidation (pure SSG)
-    }
-  );
-  return res.json();
-}
 
-export default async function Home() {
-  let data = await getPokemons();
-  let pokemons = data?.results || [];
+  let result = await getPokemons(limit, offset);
+  let pokemons = result?.results.map((vl,i)=>{
+    return {...vl,id:i+1}
+  }) || [];
+
+
   return (
-    <div>
-      <h1 className="text-center text-4xl font-bold">PokeMon</h1>
-      <ul className="grid grid-cols-4 gap-5 my-8">
-        {pokemons.map((pokemon, i) => {
-          return (
-            <li key={`${pokemon.name}${i + 1}`} className="">
-              <Link
-                href={`/pokemon/${i + 1}`}
-                className="capitalize  text-2xl font-extrabold tracking-widest block text-shadow-2xs text-center p-10 background-placeholder rounded-2xl h-full"
-              >
-                {pokemon.name}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+    <div className="min-h-screen  py-8 px-4 bg-blue-500 rounded-2xl">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-6xl font-bold text-yellow-400 mb-2 drop-shadow-lg">
+            PokeMon
+          </h1>
+          <p className="text-xl text-white/80">
+            Discover your favorite Pokémon
+          </p>
+        </div>
+         
+        <PokemonList list={pokemons}/>
+      </div>
     </div>
   );
 }
